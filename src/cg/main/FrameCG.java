@@ -27,7 +27,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
-import cg.design.formas;
+import cg.design.Formas;
 
 
 public class FrameCG extends JFrame {
@@ -65,9 +65,9 @@ public class FrameCG extends JFrame {
     private JComboBox<String> cbxMetodo;
     private JLabel lblMetodo;
     private Color corPixel;
-    private formas linha;
+    private Formas linha;
     
-    public ArrayList<formas> list = new ArrayList<formas>();
+    public ArrayList<Formas> list = new ArrayList<Formas>();
 
     
     
@@ -159,7 +159,7 @@ public class FrameCG extends JFrame {
 							g.setColor(corPixel);
 							
 
-							formas.desenhaLinha(xi, xf,yi, yf, g);
+							Formas.desenhaLinha(xi, xf,yi, yf, g);
 							canvas.removeMouseListener(this);
 						}
 						
@@ -260,7 +260,7 @@ public class FrameCG extends JFrame {
 							Graphics g = canvas.getGraphics();
 							g.setColor(corPixel);
 
-							formas.desenhaCirculo(Xc, Yc, raio, g);
+							Formas.desenhaCirculo(Xc, Yc, raio, g);
 							canvas.removeMouseListener(this);
 						}
 						
@@ -467,14 +467,14 @@ public class FrameCG extends JFrame {
 						Graphics g = canvas.getGraphics();
 						g.setColor(corPixel);
 
-						formas.desenhaCirculo(Integer.parseInt(txtX1.getText()), Integer.parseInt(txtX2.getText()),
+						Formas.desenhaCirculo(Integer.parseInt(txtX1.getText()), Integer.parseInt(txtX2.getText()),
 								Integer.parseInt(txtRaio.getText()), g);
 
 					} else if (rbLinha.isSelected()) {
 						Graphics g = canvas.getGraphics();
 						g.setColor(corPixel);
 
-						formas.desenhaLinha(Integer.parseInt(txtX1.getText()), Integer.parseInt(txtX2.getText()),
+						Formas.desenhaLinha(Integer.parseInt(txtX1.getText()), Integer.parseInt(txtX2.getText()),
 								Integer.parseInt(txtY1.getText()), Integer.parseInt(txtY2.getText()), g);
 						
 
@@ -482,14 +482,14 @@ public class FrameCG extends JFrame {
 						Graphics g = canvas.getGraphics();
 						g.setColor(corPixel);
 						
-						formas.desenhaTriangulo(Integer.parseInt(txtX1.getText()), Integer.parseInt(txtX2.getText()), Integer.parseInt(txtX3.getText()),
+						Formas.desenhaTriangulo(Integer.parseInt(txtX1.getText()), Integer.parseInt(txtX2.getText()), Integer.parseInt(txtX3.getText()),
 								Integer.parseInt(txtY1.getText()), Integer.parseInt(txtY2.getText()), Integer.parseInt(txtY3.getText()), g);
 
 					} else if (rbRetangulo.isSelected()) {
 						Graphics g = canvas.getGraphics();
 						g.setColor(corPixel);
 
-						formas.desenhaRetangulo(Integer.parseInt(txtX1.getText()), Integer.parseInt(txtX2.getText()),
+						Formas.desenhaRetangulo(Integer.parseInt(txtX1.getText()), Integer.parseInt(txtX2.getText()),
 								Integer.parseInt(txtY1.getText()), Integer.parseInt(txtY2.getText()), g);
 
 					}
