@@ -11,10 +11,14 @@ import java.awt.Color;
 import javax.swing.border.LineBorder;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JColorChooser;
+
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionAdapter;
+import java.awt.image.BufferedImage;
+import java.io.LineNumberInputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
@@ -36,26 +40,34 @@ public class FrameCG extends JFrame {
 	private int WIDTH = 800;
 	private int HEIGHT = 600;
     private Canvas canvas;
+    private BufferedImage canvasBI;
     private JTextField txtX1;
     private JTextField txtY1;
+    private JTextField txtX3;
     private JTextField txtX2;
     private JTextField txtY2;
+    private JTextField txtY3;
     private JTextField txtRaio;
     private JLabel lblX1;
     private JLabel lblX2;
+    private JLabel lblX3;
     private JLabel lblRaio;
     private JLabel lblY1;
     private JLabel lblY2;
+    private JLabel lblY3;
     private JRadioButton rbLinha;
     private JRadioButton rbTriangulo;
-    private JRadioButton rdbtnRetanguloBresenham;
+    private JRadioButton rbRetangulo;
     private JRadioButton rbCirculo;
     private ButtonGroup group;
     private JButton btnLimpar;
     private JButton btnPlotar;
     private JComboBox<String> cbxMetodo;
     private JLabel lblMetodo;
-    private List<Shape> myShapes = new ArrayList<Shape>();
+    private Color corPixel;
+    private formas linha;
+    
+    public ArrayList<formas> list = new ArrayList<formas>();
 
     
     
@@ -144,7 +156,8 @@ public class FrameCG extends JFrame {
 							this.yf = e.getY();
 							
 							Graphics g = canvas.getGraphics();
-							g.setColor(Color.GREEN);
+							g.setColor(corPixel);
+							
 
 							formas.desenhaLinha(xi, xf,yi, yf, g);
 							canvas.removeMouseListener(this);
@@ -245,7 +258,7 @@ public class FrameCG extends JFrame {
 							int Xc = xf, Yc=yf;
 							
 							Graphics g = canvas.getGraphics();
-							g.setColor(Color.GREEN);
+							g.setColor(corPixel);
 
 							formas.desenhaCirculo(Xc, Yc, raio, g);
 							canvas.removeMouseListener(this);
@@ -301,11 +314,132 @@ public class FrameCG extends JFrame {
 				}
 			}
 		});
+		
+		rbRetangulo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 
+				Object qualMetodo = cbxMetodo.getSelectedItem();
+
+				if (qualMetodo.toString() == "Selecione") {
+					JOptionPane.showMessageDialog(null,
+							"Por favor, selecione o método de entrada:\n\nMOUSE ou TECLADO");
+
+				} else if (qualMetodo.toString() == "Mouse") {
+					lblX1.setVisible(false);
+					lblX2.setVisible(false);
+					lblY1.setVisible(false);
+					lblY2.setVisible(false);
+					lblRaio.setVisible(false);
+
+					txtX1.setVisible(false);
+					txtX2.setVisible(false);
+					txtY1.setVisible(false);
+					txtY2.setVisible(false);
+					txtRaio.setVisible(false);
+				} else {
+					lblX1.setVisible(false);
+					lblX2.setVisible(false);
+					lblY1.setVisible(false);
+					lblY2.setVisible(false);
+					lblRaio.setVisible(false);
+
+					txtX1.setVisible(false);
+					txtX2.setVisible(false);
+					txtY1.setVisible(false);
+					txtY2.setVisible(false);
+					txtRaio.setVisible(false);
+
+					txtX1.setText("");
+					txtX2.setText("");
+					txtY1.setText("");
+					txtY2.setText("");
+					txtRaio.setText("");
+
+					lblX1.setVisible(true);
+					lblX2.setVisible(true);
+					lblY1.setVisible(true);
+					lblY2.setVisible(true);
+
+					txtX1.setVisible(true);
+					txtX2.setVisible(true);
+					txtY1.setVisible(true);
+					txtY2.setVisible(true);
+				}
+			}
+		});
+
+		rbTriangulo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				Object qualMetodo = cbxMetodo.getSelectedItem();
+
+				if (qualMetodo.toString() == "Selecione") {
+					JOptionPane.showMessageDialog(null,
+							"Por favor, selecione o método de entrada:\n\nMOUSE ou TECLADO");
+
+				} else if (qualMetodo.toString() == "Mouse") {
+					lblX1.setVisible(false);
+					lblX2.setVisible(false);
+					lblX3.setVisible(false);
+					lblY1.setVisible(false);
+					lblY2.setVisible(false);
+					lblY3.setVisible(false);
+					lblRaio.setVisible(false);
+
+					txtX1.setVisible(false);
+					txtX2.setVisible(false);
+					txtX3.setVisible(false);
+					txtY1.setVisible(false);
+					txtY2.setVisible(false);
+					txtY3.setVisible(false);
+					txtRaio.setVisible(false);
+				} else {
+					lblX1.setVisible(false);
+					lblX2.setVisible(false);
+					lblX3.setVisible(false);
+					lblY1.setVisible(false);
+					lblY2.setVisible(false);
+					lblY3.setVisible(false);
+					lblRaio.setVisible(false);
+
+					txtX1.setVisible(false);
+					txtX2.setVisible(false);
+					txtX3.setVisible(false);
+					txtY1.setVisible(false);
+					txtY2.setVisible(false);
+					txtY3.setVisible(false);
+					txtRaio.setVisible(false);
+
+					txtX1.setText("");
+					txtX2.setText("");
+					txtX3.setText("");
+					txtY1.setText("");
+					txtY2.setText("");
+					txtY3.setText("");
+					txtRaio.setText("");
+
+					lblX1.setVisible(true);
+					lblX2.setVisible(true);
+					lblX3.setVisible(true);
+					lblY1.setVisible(true);
+					lblY2.setVisible(true);
+					lblY3.setVisible(true);
+
+					txtX1.setVisible(true);
+					txtX2.setVisible(true);
+					txtX3.setVisible(true);
+					txtY1.setVisible(true);
+					txtY2.setVisible(true);
+					txtY3.setVisible(true);
+				}
+			}
+		});
+
+			
 		btnLimpar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Graphics g = canvas.getGraphics();
-				g.setColor(Color.BLACK);
+				g.setColor(Color.WHITE);
 				g.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 				g.dispose();
 
@@ -331,21 +465,32 @@ public class FrameCG extends JFrame {
 
 					if (rbCirculo.isSelected()) {
 						Graphics g = canvas.getGraphics();
-						g.setColor(Color.GREEN);
+						g.setColor(corPixel);
 
 						formas.desenhaCirculo(Integer.parseInt(txtX1.getText()), Integer.parseInt(txtX2.getText()),
 								Integer.parseInt(txtRaio.getText()), g);
 
 					} else if (rbLinha.isSelected()) {
 						Graphics g = canvas.getGraphics();
-						g.setColor(Color.GREEN);
+						g.setColor(corPixel);
 
 						formas.desenhaLinha(Integer.parseInt(txtX1.getText()), Integer.parseInt(txtX2.getText()),
 								Integer.parseInt(txtY1.getText()), Integer.parseInt(txtY2.getText()), g);
+						
 
 					} else if (rbTriangulo.isSelected()) {
+						Graphics g = canvas.getGraphics();
+						g.setColor(corPixel);
+						
+						formas.desenhaTriangulo(Integer.parseInt(txtX1.getText()), Integer.parseInt(txtX2.getText()), Integer.parseInt(txtX3.getText()),
+								Integer.parseInt(txtY1.getText()), Integer.parseInt(txtY2.getText()), Integer.parseInt(txtY3.getText()), g);
 
-					} else if (rdbtnRetanguloBresenham.isSelected()) {
+					} else if (rbRetangulo.isSelected()) {
+						Graphics g = canvas.getGraphics();
+						g.setColor(corPixel);
+
+						formas.desenhaRetangulo(Integer.parseInt(txtX1.getText()), Integer.parseInt(txtX2.getText()),
+								Integer.parseInt(txtY1.getText()), Integer.parseInt(txtY2.getText()), g);
 
 					}
 				}
@@ -413,6 +558,16 @@ public class FrameCG extends JFrame {
 		contentPane.add(txtY2);
 		txtY2.setVisible(false);
 		
+		lblX3 = new JLabel("X3: ");
+		lblX3.setBounds(860, 223, 61, 16);
+		contentPane.add(lblX3);
+		lblX3.setVisible(false);
+		
+		lblY3 = new JLabel("Y3:");
+		lblY3.setBounds(860, 256, 61, 16);
+		contentPane.add(lblY3);
+		lblY3.setVisible(false);
+		
 		txtRaio = new JTextField();
 		txtRaio.setColumns(10);
 		txtRaio.setBounds(840, 251, 130, 26);
@@ -420,10 +575,10 @@ public class FrameCG extends JFrame {
 		txtRaio.setVisible(false);
 		
 		canvas = new Canvas();
-		canvas.setBackground(new Color(0, 0, 0));
+		canvas.setBackground(new Color(255, 255, 255));
 		canvas.setBounds(0, 0, WIDTH, HEIGHT);
 		canvas.setVisible(true);
-		contentPane.add(canvas);
+		contentPane.add(canvas);	
 		
 		rbLinha = new JRadioButton("Linha", false);
 		rbLinha.setBounds(806, 45, 141, 23);
@@ -433,9 +588,9 @@ public class FrameCG extends JFrame {
 		rbTriangulo.setBounds(806, 80, 164, 23);
 		contentPane.add(rbTriangulo);
 		
-		rdbtnRetanguloBresenham = new JRadioButton("Retangulo", false);
-		rdbtnRetanguloBresenham.setBounds(806, 115, 177, 23);
-		contentPane.add(rdbtnRetanguloBresenham);
+		rbRetangulo = new JRadioButton("Retangulo", false);
+		rbRetangulo.setBounds(806, 115, 177, 23);
+		contentPane.add(rbRetangulo);
 		
 		rbCirculo = new JRadioButton("Circulo", false);
 		rbCirculo.setBounds(806, 152, 177, 23);
@@ -444,15 +599,15 @@ public class FrameCG extends JFrame {
 		group = new ButtonGroup();
 		group.add(rbLinha);
 		group.add(rbTriangulo);
-		group.add(rdbtnRetanguloBresenham);
+		group.add(rbRetangulo);
 		group.add(rbCirculo);
 		
 		btnLimpar = new JButton("Limpar");
-		btnLimpar.setBounds(806, 390, 152, 47);
+		btnLimpar.setBounds(808, 550, 152, 47);
 		contentPane.add(btnLimpar);
 		
 		btnPlotar = new JButton("Vai!");
-		btnPlotar.setBounds(961, 390, 152, 47);
+		btnPlotar.setBounds(963, 550, 152, 47);
 		contentPane.add(btnPlotar);
 		
 		cbxMetodo = new JComboBox<String>();
@@ -464,7 +619,21 @@ public class FrameCG extends JFrame {
 		lblMetodo = new JLabel("Selecione o método:");
 		lblMetodo.setBounds(806, 10, 141, 16);
 		contentPane.add(lblMetodo);	
+		
+		JButton btnCores = new JButton("Escolha a cor");
+		btnCores.addActionListener(
+                new ActionListener()
+                {
+                    public void actionPerformed( ActionEvent event )
+                    {
+                    	corPixel = JColorChooser.showDialog(FrameCG.this, "Escolher a color", corPixel);
+                       
+                        if( corPixel == null )
+                        	corPixel = Color.BLACK;
+                    } 
+                }
+                );
+		btnCores.setBounds(808, 518, 307, 29);
+		contentPane.add(btnCores);
 	}
-
-  
 }

@@ -78,5 +78,72 @@ public class formas {
  
 	}
     
+    //Retangulo
+    
+    public static void desenhaRetangulo (float x1, float y1, float x2, float y2, Graphics g){
+    
+		float x, y, dx, dy, numeroPassos,incrementaX,incrementaY;
+		int i;
+		
+
+		dx = Math.abs(x2-x1);
+		dy = Math.abs(y2-y1);
+
+		if(dx>=dy)
+		numeroPassos=dx;
+		else
+		numeroPassos=dy;
+
+		incrementaX=dx/numeroPassos;
+		incrementaY=dy/numeroPassos;
+
+		x=x1;
+		y=y1;
+
+		i=1;
+
+		    while(i<=numeroPassos) {        
+		          g.drawLine(Math.round(x), Math.round(y), Math.round(x), Math.round(y));
+		          x=x+incrementaX;
+		          //y=y+incrementaY;
+		          i=i+1;
+		    }
+		i=1;
+		    while(i<=numeroPassos) {        
+		          g.drawLine(Math.round(x), Math.round(y), Math.round(x), Math.round(y));
+		          //x=x+incrementaX;
+		          y=y+incrementaY;
+		          i=i+1;
+		    }
+		    
+			x=x2;
+			y=y2;
+
+			i=1;
+
+			    while(i<=numeroPassos) {        
+			          g.drawLine(Math.round(x), Math.round(y), Math.round(x), Math.round(y));
+			          x=x-incrementaX;
+			          //y=y-incrementaY;
+			          i=i+1;
+					
+			    }
+				
+			    i=1;
+
+				    while(i<=numeroPassos) {        
+				          g.drawLine(Math.round(x), Math.round(y), Math.round(x), Math.round(y));
+				          //x=x-incrementaX;
+				          y=y-incrementaY;
+				          i=i+1;
+				    }
+    	}
+    
+    //Triangulo
+    
+    public static void desenhaTriangulo(float x1, float y1, float x2, float y2, float x3, float y3, Graphics g){
+		
+    }
+    
     
 }
