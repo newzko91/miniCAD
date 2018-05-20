@@ -485,7 +485,7 @@ public class FrameCG extends JFrame {
 						Formas.desenhaTriangulo(Integer.parseInt(txtX1.getText()), Integer.parseInt(txtX2.getText()), Integer.parseInt(txtX3.getText()),
 								Integer.parseInt(txtY1.getText()), Integer.parseInt(txtY2.getText()), Integer.parseInt(txtY3.getText()), g);
 
-					} else if (rbRetangulo.isSelected()) {
+					} else {
 						Graphics g = canvas.getGraphics();
 						g.setColor(corPixel);
 
