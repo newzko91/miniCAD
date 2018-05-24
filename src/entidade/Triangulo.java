@@ -5,14 +5,17 @@ import java.awt.Color;
 import java.awt.Point;
 
 public class Triangulo extends DoisD{
-	
+
+	private static final long serialVersionUID = 1L;
+
 	public void paintComponent(Graphics g) {
 		
 		super.paintComponent(g);
 		g.setColor(cor);
-		g.drawLine(0, 0, largura-1, altura-1);
-		g.drawLine(0, 0, largura-1, altura-1);
-		g.drawLine(0, 0, largura-1, altura-1);
+		//g.drawLine(0, 0, largura-1, altura-1);
+		g.drawLine(200, 100, 300, 250);
+		g.drawLine(100, 200, 300, 250);
+		g.drawLine(200, 100, 100, 250);
 		
 	}
 

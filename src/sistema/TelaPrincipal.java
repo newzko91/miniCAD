@@ -710,21 +710,55 @@ public class TelaPrincipal extends JFrame {
 					criar = Circulo.desenhaCirculo(Integer.parseInt(txtX1.getText()), Integer.parseInt(txtY1.getText()),
 							Integer.parseInt(txtRaio.getText()), g);
 					
+					txtX1.setText("");
+					txtX2.setText("");
+					txtX3.setText("");
+					txtY1.setText("");
+					txtY2.setText("");
+					txtY3.setText("");
+					txtRaio.setText("");
+					
 					break;
 				
 				case 2:
 					criar = new Retangulo();
 					criar = Retangulo.desenhaRetangulo(Integer.parseInt(txtX1.getText()), Integer.parseInt(txtX2.getText()),
 								Integer.parseInt(txtY1.getText()), Integer.parseInt(txtY2.getText()), g);
+					
+					txtX1.setText("");
+					txtX2.setText("");
+					txtX3.setText("");
+					txtY1.setText("");
+					txtY2.setText("");
+					txtY3.setText("");
+					txtRaio.setText("");
+					
 					break;
 					
 				case 3:
 					criar = new Linha();
 					criar = Linha.desenhaLinha(Integer.parseInt(txtX1.getText()), Integer.parseInt(txtX2.getText()),
 								Integer.parseInt(txtY1.getText()), Integer.parseInt(txtY2.getText()), g);
+					
+					txtX1.setText("");
+					txtX2.setText("");
+					txtX3.setText("");
+					txtY1.setText("");
+					txtY2.setText("");
+					txtY3.setText("");
+					txtRaio.setText("");
 					break;
 				case 4:
 					criar = new Triangulo();
+					
+					
+					txtX1.setText("");
+					txtX2.setText("");
+					txtX3.setText("");
+					txtY1.setText("");
+					txtY2.setText("");
+					txtY3.setText("");
+					txtRaio.setText("");
 					
 					break;
 			}
@@ -747,6 +781,8 @@ public class TelaPrincipal extends JFrame {
 				btnDesfazer.setEnabled(true);
 				btnLimpar.setEnabled(true);
 				lblQtd.setText(String.valueOf(figuras.size()));
+				
+
 				
 			}
 		});
