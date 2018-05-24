@@ -6,18 +6,50 @@ import java.awt.Point;
 
 public class Triangulo extends DoisD{
 
+	 int x=0;
+	 int y=0;
+	 
 	private static final long serialVersionUID = 1L;
 
-	public void paintComponent(Graphics g) {
+  public static DoisD desenhaTriangulo (int x1, int x2,int x3, int y1,int y2,int y3,Graphics g){
+    	
+		Linha.desenhaLinha(x1, x2, y1, y2, g);
+		Linha.desenhaLinha(x1, x3, y1, y3, g);
+		Linha.desenhaLinha(x2, x3, y2, y3, g);
+    	return null;
+    }
+
+
+  
+  public void paintComponent(Graphics g) {
 		
 		super.paintComponent(g);
-		g.setColor(cor);
-		//g.drawLine(0, 0, largura-1, altura-1);
-		g.drawLine(200, 100, 300, 250);
-		g.drawLine(100, 200, 300, 250);
-		g.drawLine(200, 100, 100, 250);
+		g.setColor(cor); //Define a cor da figura
+
 		
+		if(preenchido) {
+			
+			//largura x | altura y
+			/*
+			 * x1 100 x2 200 x3 300
+			 * y1 200 y2 300 y3 100
+			 * 
+			 */
+			
+			//g.drawLine(0, 0, largura-1, altura-1);
+			Linha.desenhaLinha(inicio.x, inicio.y, fim.x, fim.y, g);
+			//Linha.desenhaLinha(x+(largura/2)-1, y+altura-1, x-(largura/2)-1, y+altura-1, g);
+			//Linha.desenhaLinha(x, y, x-(largura/2)-1, y+altura-1, g);
+			
+		}
+		else {
+			
+			Linha.desenhaLinha(inicio.x, inicio.y, fim.x, fim.y, g);
+			
+		}
 	}
+  
+ 
 
 	public Triangulo() {
 		super();
@@ -29,48 +61,7 @@ public class Triangulo extends DoisD{
 		
 	}
 	
-    public static DoisD desenhaLinha(int x1, int x2, int y1, int y2, Graphics g) {
-        int d = 0;
- 
-        int dx = Math.abs(x2 - x1);
-        int dy = Math.abs(y2 - y1);
- 
-        int dx2 = 2 * dx; 
-        int dy2 = 2 * dy;
- 
-        int ix = x1 < x2 ? 1 : -1; 
-        int iy = y1 < y2 ? 1 : -1;
- 
-        int x = x1;
-        int y = y1;
- 
-        if (dx >= dy) {
-            while (true) {
-            	g.drawLine(Math.round(x), Math.round(y), Math.round(x), Math.round(y));
-                if (x == x2)
-                    break;
-                x += ix;
-                d += dy2;
-                if (d > dx) {
-                    y += iy;
-                    d -= dx2;
-                }
-            }
-        } else {
-            while (true) {
-            	g.drawLine(Math.round(x), Math.round(y), Math.round(x), Math.round(y));
-                if (y == y2)
-                    break;
-                y += iy;
-                d += dx2;
-                if (d > dy) {
-                    x += ix;
-                    d -= dy2;
-                }
-            }
-        }
-        
-        return null;
-    }
+	
+
 
 }

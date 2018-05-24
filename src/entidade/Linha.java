@@ -6,24 +6,6 @@ import java.awt.Point;
 
 public class Linha extends DoisD{
 	
-	public void paintComponent(Graphics g) {
-		
-		super.paintComponent(g);
-		g.setColor(cor);
-		g.drawLine(0, 0, largura-1, altura-1);
-		
-	}
-
-	public Linha() {
-		super();
-		
-	}
-
-	public Linha(Point inicio, Point fim, int largura, int altura, boolean preenchido, Color cor) {
-		super(inicio, fim, largura, altura, preenchido, cor);
-		
-	}
-	
     public static DoisD desenhaLinha(int x1, int x2, int y1, int y2, Graphics g) {
         int d = 0;
  
@@ -67,5 +49,27 @@ public class Linha extends DoisD{
         
         return null;
     }
+	
+	public void paintComponent(Graphics g) {
+		
+		super.paintComponent(g);
+		g.setColor(cor);
+		g.drawLine(0, 0, largura-1, altura-1);
+		
+
+		
+	}
+
+	public Linha() {
+		super();
+		
+	}
+
+	public Linha(Point inicio, Point fim, int largura, int altura, boolean preenchido, Color cor) {
+		super(inicio, fim, largura, altura, preenchido, cor);
+		
+	}
+	
+
 
 }

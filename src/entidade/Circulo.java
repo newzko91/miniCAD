@@ -6,6 +6,34 @@ import java.awt.Point;
 
 public class Circulo extends DoisD{
 
+	public static DoisD desenhaCirculo(int centerX, int centerY, int raio, Graphics g) {
+		int p = (5 - raio * 4)/4;
+		int x = 0;
+		int y = raio;
+ 
+		do {
+			
+			g.drawLine(Math.round(centerX + x), Math.round(centerY + y), Math.round(centerX + x), Math.round(centerY + y));
+			g.drawLine(Math.round(centerX - x), Math.round(centerY + y), Math.round(centerX - x), Math.round(centerY + y));
+			g.drawLine(Math.round(centerX + x), Math.round(centerY - y), Math.round(centerX + x), Math.round(centerY - y));
+			g.drawLine(Math.round(centerX - x), Math.round(centerY - y), Math.round(centerX - x), Math.round(centerY - y));
+			g.drawLine(Math.round(centerX + y), Math.round(centerY + x), Math.round(centerX + y), Math.round(centerY + x));
+			g.drawLine(Math.round(centerX - y), Math.round(centerY + x), Math.round(centerX - y), Math.round(centerY + x));
+			g.drawLine(Math.round(centerX + y), Math.round(centerY - x), Math.round(centerX + y), Math.round(centerY - x));
+			g.drawLine(Math.round(centerX - y), Math.round(centerY - x), Math.round(centerX - y), Math.round(centerY - x));
+			
+			if (p < 0) {
+				p += 2 * x + 1;
+			} else {
+				p += 2 * (x - y) + 1;
+				y--;
+			}
+			x++;
+		} while (x <= y);
+		return null;
+ 
+	}
+	
 	public void paintComponent(Graphics g) {
 		
 		super.paintComponent(g);
@@ -37,34 +65,7 @@ public class Circulo extends DoisD{
 		super(inicio, fim, largura, altura, preenchido, cor);
 		
 	}
-	
-	public static DoisD desenhaCirculo(int centerX, int centerY, int raio, Graphics g) {
-		int p = (5 - raio * 4)/4;
-		int x = 0;
-		int y = raio;
- 
-		do {
-			
-			g.drawLine(Math.round(centerX + x), Math.round(centerY + y), Math.round(centerX + x), Math.round(centerY + y));
-			g.drawLine(Math.round(centerX - x), Math.round(centerY + y), Math.round(centerX - x), Math.round(centerY + y));
-			g.drawLine(Math.round(centerX + x), Math.round(centerY - y), Math.round(centerX + x), Math.round(centerY - y));
-			g.drawLine(Math.round(centerX - x), Math.round(centerY - y), Math.round(centerX - x), Math.round(centerY - y));
-			g.drawLine(Math.round(centerX + y), Math.round(centerY + x), Math.round(centerX + y), Math.round(centerY + x));
-			g.drawLine(Math.round(centerX - y), Math.round(centerY + x), Math.round(centerX - y), Math.round(centerY + x));
-			g.drawLine(Math.round(centerX + y), Math.round(centerY - x), Math.round(centerX + y), Math.round(centerY - x));
-			g.drawLine(Math.round(centerX - y), Math.round(centerY - x), Math.round(centerX - y), Math.round(centerY - x));
-			
-			if (p < 0) {
-				p += 2 * x + 1;
-			} else {
-				p += 2 * (x - y) + 1;
-				y--;
-			}
-			x++;
-		} while (x <= y);
-		return null;
- 
-	}
+
 	
 	
 	

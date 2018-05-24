@@ -21,6 +21,7 @@ import javax.swing.JColorChooser;
 import java.awt.event.MouseMotionAdapter;
 import java.util.ArrayList;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
@@ -626,6 +627,8 @@ public class TelaPrincipal extends JFrame {
 			public void mouseReleased(MouseEvent e) {
 				mouseReleased = panelDesenho.getMousePosition();
 				DoisD criar = null;
+				Graphics g = panelDesenho.getGraphics();   
+				g.setColor(corEscolhida);
 				
 				switch(forma) {
 				
@@ -640,9 +643,12 @@ public class TelaPrincipal extends JFrame {
 						
 					case 3:
 						criar = new Linha();
+						criar = Linha.desenhaLinha(mousePressed.x, mouseReleased.x, mousePressed.y, mouseReleased.y, g);
+						
 						break;
 					case 4:
 						criar = new Triangulo();
+						
 						break;
 				}
 				
@@ -651,6 +657,7 @@ public class TelaPrincipal extends JFrame {
 				x1 = Math.min(mouseReleased.x, mousePressed.x);
 				y1 = Math.min(mouseReleased.y, mousePressed.y);
 				inicio.setLocation(x1, y1);
+				
 				
 				
 				criar.setInicio(mousePressed);
@@ -670,8 +677,7 @@ public class TelaPrincipal extends JFrame {
 				figuras.add(criar);
 				btnDesfazer.setEnabled(true);
 				btnLimpar.setEnabled(true);
-				lblQtd.setText(String.valueOf(figuras.size()));
-				
+				lblQtd.setText(String.valueOf(figuras.size()));	
 			}
 		});
 		
@@ -710,6 +716,10 @@ public class TelaPrincipal extends JFrame {
 					criar = Circulo.desenhaCirculo(Integer.parseInt(txtX1.getText()), Integer.parseInt(txtY1.getText()),
 							Integer.parseInt(txtRaio.getText()), g);
 					
+					figuras.add(criar);
+					lblQtd.setText(String.valueOf(figuras.size()));
+					btnDesfazer.setEnabled(true);
+					
 					txtX1.setText("");
 					txtX2.setText("");
 					txtX3.setText("");
@@ -724,6 +734,10 @@ public class TelaPrincipal extends JFrame {
 					criar = new Retangulo();
 					criar = Retangulo.desenhaRetangulo(Integer.parseInt(txtX1.getText()), Integer.parseInt(txtX2.getText()),
 								Integer.parseInt(txtY1.getText()), Integer.parseInt(txtY2.getText()), g);
+					
+					figuras.add(criar);
+					lblQtd.setText(String.valueOf(figuras.size()));
+					btnDesfazer.setEnabled(true);
 					
 					txtX1.setText("");
 					txtX2.setText("");
@@ -740,6 +754,10 @@ public class TelaPrincipal extends JFrame {
 					criar = Linha.desenhaLinha(Integer.parseInt(txtX1.getText()), Integer.parseInt(txtX2.getText()),
 								Integer.parseInt(txtY1.getText()), Integer.parseInt(txtY2.getText()), g);
 					
+					figuras.add(criar);
+					lblQtd.setText(String.valueOf(figuras.size()));
+					btnDesfazer.setEnabled(true);
+					
 					txtX1.setText("");
 					txtX2.setText("");
 					txtX3.setText("");
@@ -750,6 +768,12 @@ public class TelaPrincipal extends JFrame {
 					break;
 				case 4:
 					criar = new Triangulo();
+					criar = Triangulo.desenhaTriangulo(Integer.parseInt(txtX1.getText()), Integer.parseInt(txtX2.getText()), Integer.parseInt(txtX3.getText()), 
+							Integer.parseInt(txtY1.getText()), Integer.parseInt(txtY2.getText()), Integer.parseInt(txtY3.getText()), g);
+					
+					figuras.add(criar);
+					lblQtd.setText(String.valueOf(figuras.size()));
+					btnDesfazer.setEnabled(true);
 					
 					
 					txtX1.setText("");
@@ -761,7 +785,7 @@ public class TelaPrincipal extends JFrame {
 					txtRaio.setText("");
 					
 					break;
-			}
+				}
 				
 				criar.setInicio(mousePressed);
 				criar.setFim(mouseReleased);
@@ -773,15 +797,8 @@ public class TelaPrincipal extends JFrame {
 				criar.setPreenchido(preenchido);
 				
 				panelDesenho.add(criar);
-				panelDesenho.repaint();
 				
 				//Adicionar as imagens ao vetor de figuras
-				
-				figuras.add(criar);
-				btnDesfazer.setEnabled(true);
-				btnLimpar.setEnabled(true);
-				lblQtd.setText(String.valueOf(figuras.size()));
-				
 
 				
 			}
